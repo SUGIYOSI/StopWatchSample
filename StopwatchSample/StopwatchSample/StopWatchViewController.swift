@@ -44,13 +44,13 @@ class StopWatchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubView()
-        bind(viewModel)
+        bind()
         viewModel.inputs.isPauseTimer.accept(false)
     }
 }
 
 extension StopWatchViewController {
-    func bind(_ viewModel: StopWatchViewModelType) {
+    func bind() {
         startStopButton.rx.tap.asSignal()
             .withLatestFrom(viewModel.outputs.isTimerWorked)
             .emit(onNext: { [weak self] isTimerStop in
